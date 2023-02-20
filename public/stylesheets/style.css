@@ -1,0 +1,164 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+:root {
+  --color-primary:rgb(141,194,111);
+  --color-secondary: rgba(118,184,82,1);
+  --color-butoon-primary:#43A047;
+  --color-button-secondary: #4CAF50;
+  --color-error: rgb(246, 141, 141);
+  --color-input: #f2f2f2;
+}
+/* :root {
+  --color-primary:rgb(254, 148, 27);
+  --color-secondary: rgb(245, 146, 40);
+  --color-butoon-primary:#e56f1a;
+  --color-button-secondary: #f08126;
+  --color-error: rgb(246, 141, 141);
+  --color-input: #f2f2f2;
+  --color-logout: rgb(169, 69, 41);
+} */
+body {
+  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-button-secondary) 50%);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;  
+}
+a {
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+header ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  list-style: none;
+  text-decoration: none;
+  margin-right: 3rem;
+}
+header #logout-button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: var(--color-logout);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-radius: 5px;
+}
+header a {
+  color: #FFFFFF;
+  font-weight: bold;
+}
+/* account:content */
+#acount-title h1 {
+  color: #fff;
+}
+#acount-title span {
+  color: yellow;
+}
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+}
+#create-story div {
+  text-align: left;
+}
+#create-story {
+  line-height: 2rem;
+}
+.story-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.story-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 2rem;
+}
+
+/* login-page */
+.login-page a {
+  color: var(--color-butoon-primary);
+}
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+}
+form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: var(--color-input);
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: var(--color-button-secondary);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+form button:hover,form button:active,form button:focus {
+  background: var(--color-butoon-primary);
+}
+form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+form .message a {
+  color: var(--color-button-secondary);
+  text-decoration: none;
+}
+form .register-form {
+  display: none;
+}
+
+/* error */
+.error , .error-message  {
+  color: var(--color-error);
+  font-weight: bold;
+}
