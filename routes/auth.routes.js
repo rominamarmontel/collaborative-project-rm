@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
 const bcrypt = require('bcryptjs')
+const isAuthenticated = require('../middlewares/isAuthenticated')
+const exposeUsersToView = require('./../middlewares/exposeUserToView')
 
 router.get('/login', async (req, res, next) => {
   res.render('auth/login')
@@ -31,14 +33,11 @@ router.post('/login', async (req, res, next) => {
       })
     }
     req.session.currentUser = foundUser
-    res.redirect('/acount')
+    res.redirect('/profile')
   } catch (error) {
     next(error)
   }
 })
-
-// I couldn't put a switch for "Log out" / "Log in"!!!
-// I am not sure if everything is ok or
 
 router.get('/signup', async (req, res, next) => {
   try {
@@ -61,7 +60,10 @@ router.post('/signup', async (req, res, next) => {
         errorMessage: 'Please put a longer password',
       })
     }
+    console.log('before finding')
     const foundUser = await User.findOne({ username: username })
+    console.log('after finding')
+
     if (foundUser) {
       return res.render('auth/signup', {
         errorMessage: 'Theres another one of you!',
@@ -80,6 +82,19 @@ router.post('/signup', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+})
+
+router.get('/profile', isAuthenticated, exposeUsersToView, (req, res, next) => {
+  res.render('profile')
+})
+
+router.get('/logout', (req, res, next) => {
+  req.session.destroy((error) => {
+    if (error) {
+      return next(error)
+    }
+    res.redirect('/login')
+  })
 })
 
 module.exports = router
