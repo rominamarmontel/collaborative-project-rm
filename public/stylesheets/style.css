@@ -64,38 +64,36 @@ header a {
   font-weight: bold;
 }
 /* account:content */
-#acount-title h1 {
+#profile-title h1 {
   color: #fff;
 }
-#acount-title span {
+#profile-title span {
   color: yellow;
+}
+
+#create-story, #continue-story, #read-story {
+  max-width: 30%;
+}
+#button-create-story, #butto-continue-story,#button-read-story {
+  width: 100%;
 }
 .content {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 3rem;
+  gap: 1.5rem;
 }
 #create-story div {
   text-align: left;
-}
-#create-story {
-  line-height: 2rem;
-}
-.story-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
 }
 .story-info {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   text-align: left;
-  gap: 2rem;
 }
-
 /* login-page */
 .login-page a {
   color: var(--color-butoon-primary);
