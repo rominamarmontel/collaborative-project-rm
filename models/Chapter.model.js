@@ -15,8 +15,8 @@ const chapterSchema = new Schema(
     content: {
       type: String,
       required: true,
-      minLength: 10,
-      maxLength: 100,
+      minLength: 1,
+      maxLength: 3000,
     },
   },
   { timestamps: true }
