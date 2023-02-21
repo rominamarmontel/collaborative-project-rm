@@ -5,6 +5,16 @@ const Chapter = require('../models/Chapter.model')
 const mongoose = require('mongoose')
 const isAuthenticated = require('./../middlewares/isAuthenticated')
 
+
+router.get('/stories', async (req, res, next) => {
+  const finishedStories = await Story.find({chapterCount: 0}).populate('chapters')
+  const unfinishedStories = await Story.find({chapterCount: {$gt: 0}}).populate('chapters')
+  
+  console.log({ finishedStories, unfinishedStories })
+  res.render('stories', { finishedStories, unfinishedStories })
+})
+
+
 router.get('/profile', async (req, res, next) => {
   const finishedStories = []
   const toContinue = []
@@ -52,5 +62,11 @@ router.post('/profile/create-story', async (req, res, next) => {
     console.log(error)
   }
 })
+
+router.get('/profile/continue-story', async (req, res, next) => {
+
+})
+
+
 
 module.exports = router

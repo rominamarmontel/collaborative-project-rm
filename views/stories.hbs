@@ -1,0 +1,13 @@
+<section id="unfinished">
+    <h2>Unfinished stories</h2>
+    {{#each unfinishedStories}}
+    {{> storyCard this}}
+    {{/each}}
+</section>
+
+<section id="finished">
+    <h2>Finished stories</h2>
+    {{#each finishedStories}}
+    {{> storyCard this}}
+    {{/each}}
+</section>
