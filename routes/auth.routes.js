@@ -84,9 +84,6 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
-router.get('/profile', isAuthenticated, exposeUsersToView, (req, res, next) => {
-  res.render('profile')
-})
 
 router.get('/logout', (req, res, next) => {
   req.session.destroy((error) => {

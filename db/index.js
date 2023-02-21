@@ -9,21 +9,21 @@ require('dotenv/config')
 const MONGO_URI =
   process.env.MONGODB_URI || 'mongodb://localhost/exquisite-story'
 
-// async function openConnection() {
-//   try {
-//     return await mongoose.connect(MONGO_URI)
-//   } catch (error) {
-//     console.error(`Error while connecting to the database: ${error.message}`)
-//   }
-// }
+async function openConnection() {
+  try {
+    return await mongoose.connect(MONGO_URI)
+  } catch (error) {
+    console.error(`Error while connecting to the database: ${error.message}`)
+  }
+}
 
-// module.exports = openConnection
+module.exports = openConnection
 
-mongoose
-  .connect(MONGO_URI)
-  .then((x) => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
-  })
-  .catch((err) => {
-    console.error('Error connecting to mongo: ', err)
-  })
+// mongoose
+//   .connect(MONGO_URI)
+//   .then((x) => {
+//     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+//   })
+//   .catch((err) => {
+//     console.error('Error connecting to mongo: ', err)
+//   })

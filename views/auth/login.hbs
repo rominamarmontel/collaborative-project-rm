@@ -3,11 +3,11 @@
     <form action='/login' method='post'>
       <div>
         <label for='username'>Username: </label>
-        <input type='text' id='username' name='username' placeholder='Username' />
+        <input type='text' id='username' name='username' placeholder='Username' value="marianne" />
       </div>
       <div>
         <label for='password'>Password: </label>
-        <input type='password' required id='password' name='password' autocomplete="on" />
+        <input type='password' required id='password' name='password' autocomplete="on" value="123456789" />
       </div>
       <section>
         {{#if errorMessage}}
