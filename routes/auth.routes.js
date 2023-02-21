@@ -33,7 +33,7 @@ router.post('/login', async (req, res, next) => {
       })
     }
     req.session.currentUser = foundUser
-    res.redirect('/profile')
+    res.redirect('stories')
   } catch (error) {
     next(error)
   }

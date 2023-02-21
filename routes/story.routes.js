@@ -14,25 +14,28 @@ router.get('/stories', async (req, res, next) => {
   res.render('stories', { finishedStories, unfinishedStories })
 })
 
+// router.get('/stories', async (req, res, next) => {
+//   const finishedStories = []
+//   const toContinue = []
+//   const stories = await Story.find({
+//     author: req.session.currentUser._id,
+//   }).populate({
+//     path: 'chapters',
+//     populate: {
+//       path: 'author',
+//     },
+//   })
+//   for (const oneStory of stories) {
+//     if (oneStory.chapters.length >= 5) {
+//       finishedStories.push(oneStory)
+//     } else {
+//       toContinue.push(oneStory)
+//     }
+//   }
 
-router.get('/profile', async (req, res, next) => {
-  const finishedStories = []
-  const toContinue = []
-  const stories = await Story.find({
-    author: req.session.currentUser._id,
-  }).populate({
-    path: 'chapters',
-    populate: {
-      path: 'author',
-    },
-  })
-  for (const oneStory of stories) {
-    if (oneStory.chapters.length >= 5) {
-      finishedStories.push(oneStory)
-    } else {
-      toContinue.push(oneStory)
-    }
-  }
+//   console.log({ finishedStories, toContinue })
+//   res.render('stories', { finishedStories, toContinue })
+// })
 
   // for (const oneStory of stories) {
   //   const chapters = await Chapter.find({story: oneStory._id})
@@ -40,11 +43,9 @@ router.get('/profile', async (req, res, next) => {
   //     finishedStories.push()
   //   }
   // }
-  console.log({ finishedStories, toContinue })
-  res.render('profile', { finishedStories, toContinue })
-})
 
-router.post('/profile/create-story', async (req, res, next) => {
+
+router.post('/stories', async (req, res, next) => {
   try {
     const chapter = await Chapter.create({
       author: req.session.currentUser._id,
@@ -57,16 +58,24 @@ router.post('/profile/create-story', async (req, res, next) => {
       chapters: [chapter._id],
     })
     console.log(req.body)
-    res.redirect('/profile')
+    res.redirect('stories')
   } catch (error) {
     console.log(error)
   }
 })
 
-router.get('/profile/continue-story', async (req, res, next) => {
-
+router.get('/stories/:StoryId', async (req, res, next) => {
+  const oneStory = await Story.find({
+    title: req.body.title,
+    author: req.body.author,
+    chapters: req.body.chapters
+  })
+  res.render('oneStory')
 })
 
-
+router.post('/stories/:StoryId', (req, res, next) => {
+  
+  res.render('oneStory')
+})
 
 module.exports = router
