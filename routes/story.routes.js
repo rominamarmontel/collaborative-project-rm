@@ -5,12 +5,15 @@ const Chapter = require('../models/Chapter.model')
 const mongoose = require('mongoose')
 const isAuthenticated = require('./../middlewares/isAuthenticated')
 
-
 router.get('/stories', async (req, res, next) => {
-  const finishedStories = await Story.find({chapterCount: 0}).populate('chapters')
-  const unfinishedStories = await Story.find({chapterCount: {$gt: 0}}).populate('chapters')
-  
-  console.log({ finishedStories, unfinishedStories })
+  const finishedStories = await Story.find({ chapterCount: 0 }).populate(
+    'chapters author'
+  )
+
+  let unfinishedStories = await Story.find({
+    chapterCount: { $gt: 0 },
+  }).populate('chapters author')
+
   res.render('stories', { finishedStories, unfinishedStories })
 })
 
@@ -37,13 +40,12 @@ router.get('/stories', async (req, res, next) => {
 //   res.render('stories', { finishedStories, toContinue })
 // })
 
-  // for (const oneStory of stories) {
-  //   const chapters = await Chapter.find({story: oneStory._id})
-  //   if (chapters.length === 5) {
-  //     finishedStories.push()
-  //   }
-  // }
-
+// for (const oneStory of stories) {
+//   const chapters = await Chapter.find({story: oneStory._id})
+//   if (chapters.length === 5) {
+//     finishedStories.push()
+//   }
+// }
 
 router.post('/stories', async (req, res, next) => {
   try {
@@ -68,13 +70,12 @@ router.get('/stories/:StoryId', async (req, res, next) => {
   const oneStory = await Story.find({
     title: req.body.title,
     author: req.body.author,
-    chapters: req.body.chapters
+    chapters: req.body.chapters,
   })
   res.render('oneStory')
 })
 
 router.post('/stories/:StoryId', (req, res, next) => {
-  
   res.render('oneStory')
 })
 

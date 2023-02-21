@@ -63,36 +63,39 @@ header a {
   color: #FFFFFF;
   font-weight: bold;
 }
-/* account:content */
-#profile-title h1 {
-  color: #fff;
-}
-#profile-title span {
-  color: yellow;
-}
-
-#create-story, #continue-story, #read-story {
-  max-width: 30%;
-}
-#button-create-story, #butto-continue-story,#button-read-story {
-  width: 100%;
-}
-.content {
+.stories-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
-  gap: 1.5rem;
+  gap: 2rem;
+  width: 100%;
 }
-#create-story div {
-  text-align: left;
+.stories-container .content {
+  max-width: 350px;
+  background-color: rgb(251, 230, 135);
+  border-radius: 5px;
 }
-.story-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: left;
+.stories-container form {
+  margin: 2rem 3rem;
+}
+
+/* storyCard-content */
+.storyCard-content .btn-add {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: var(--color-button-secondary);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+form button:hover,form button:active,form button:focus {
+  background: var(--color-butoon-primary);
 }
 /* login-page */
 .login-page a {
