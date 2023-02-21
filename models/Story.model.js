@@ -6,8 +6,8 @@ const storySchema = new Schema(
     title: {
       type: String,
       required: true,
-      minLength: 5,
-      maxLength: 30,
+      minLength: 1,
+      maxLength: 50,
     },
     author: {
       type: Schema.Types.ObjectId,

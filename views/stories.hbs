@@ -1,3 +1,18 @@
+<section id="created">
+    <h2>Create a story</h2>
+     <form action="/stories" method="post">
+            <label for="title">Your story's title</label><br>
+            <input type="text" name="title" id="title" placeholder="Title"/>
+            <label for="sujet"></label>
+            <textarea id="story" name="story" placeholder="The first chapter of your story"
+          rows="40" cols="30">
+</textarea>
+            <div class="operation">
+              <button id="button-create-story">Create your Story</button>
+            </div>
+          </form>
+</section>
+
 <section id="unfinished">
     <h2>Unfinished stories</h2>
     {{#each unfinishedStories}}
