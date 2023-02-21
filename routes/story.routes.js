@@ -5,17 +5,17 @@ const Chapter = require("../models/Chapter.model");
 const mongoose = require("mongoose");
 const isAuthenticated = require("./../middlewares/isAuthenticated");
 
-router.get("/stories", async (req, res, next) => {
+router.get('/stories', async (req, res, next) => {
   const finishedStories = await Story.find({ chapterCount: 0 }).populate(
-    "chapters"
-  );
+    'chapters author'
+  )
+
   const unfinishedStories = await Story.find({
     chapterCount: { $gt: 0 },
-  }).populate("chapters");
+  }).populate('chapters author')
 
-  console.log({ finishedStories, unfinishedStories });
-  res.render("stories", { finishedStories, unfinishedStories });
-});
+  res.render('stories', { finishedStories, unfinishedStories })
+})
 
 // router.get('/stories', async (req, res, next) => {
 //   const finishedStories = []

@@ -1,13 +1,40 @@
-<section id="unfinished">
-    <h2>Unfinished stories</h2>
-    {{#each unfinishedStories}}
-    {{> storyCard this}}
-    {{/each}}
-</section>
+<div class="stories-container">
+    <section id="created">
+        <div class="content">
+        <h2>Create a story</h2>
+            <form action="/stories" method="post">
+                <label for="title">Your story's title</label><br>
+                <input type="text" name="title" id="title" placeholder="Title"/>
+                <label for="sujet"></label>
+                <textarea id="story" name="story" placeholder="The first chapter of your story"
+                rows="10" cols="20">
+                </textarea>
+                <div class="operation">
+            <button id="button-create-story">Create your Story</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-<section id="finished">
-    <h2>Finished stories</h2>
-    {{#each finishedStories}}
-    {{> storyCard this}}
-    {{/each}}
-</section>
+    <section id="unfinished">
+        <div class="content">
+            <h2>Unfinished stories</h2>
+            {{#each unfinishedStories}}
+                <form action="/stories/oneStory" method="post">
+                    {{> storyCard this}}
+                </form>
+            {{/each}}
+        </div>
+    </section>
+
+    <section id="finished">
+        <div class="content">
+            <h2>Finished stories</h2>
+            {{#each finishedStories}}
+                <form action="/sotries/read" method="post">
+                    {{> storyCard this}}
+                </form>
+            {{/each}}
+        </div>
+    </section>
+</div>
