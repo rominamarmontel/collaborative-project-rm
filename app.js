@@ -3,7 +3,7 @@
 require('dotenv/config')
 
 // ℹ️ Connects to the database
-require('./db')
+require('./db')()
 
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
@@ -12,6 +12,7 @@ const express = require('express')
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs')
+const exposeUsers = require('./middlewares/exposeUserToView')
 
 const app = express()
 
@@ -24,7 +25,7 @@ const capitalized = (string) =>
   string[0].toUpperCase() + string.slice(1).toLowerCase()
 
 app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`
-
+app.use(exposeUsers)
 // 👇 Start handling routes here
 const index = require('./routes/index.routes')
 app.use('/', index)

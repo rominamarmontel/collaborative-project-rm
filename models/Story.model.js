@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model, SchemaTypeOptions } = require('mongoose')
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const storySchema = new Schema(
@@ -19,6 +19,10 @@ const storySchema = new Schema(
       min: 0,
       default: 5,
     },
+    chapters: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Chapter'
+    }]
   },
   { timestamps: true }
 )

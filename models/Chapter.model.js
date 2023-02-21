@@ -7,11 +7,11 @@ const chapterSchema = new Schema(
       ref: 'User',
       required: true,
     },
-    story: {
-      type: Schema.Types.ObjectId,
-      ref: 'Story',
-      required: true,
-    },
+    // story: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Story',
+    //   required: true,
+    // },
     content: {
       type: String,
       required: true,
