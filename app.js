@@ -12,6 +12,9 @@ const express = require('express')
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs')
+
+// Helper to show updatedAt date as a human readable date
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'))
 const exposeUsers = require('./middlewares/exposeUserToView')
 
 const app = express()
