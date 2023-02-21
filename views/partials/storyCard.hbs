@@ -1,0 +1,11 @@
+<div>
+    <h3>{{this.title}}</h3>
+    <p style="color: red">{{this.chapters.0.content}}</p>
+    <a href="/stories/{{this._id}}">
+    {{#if this.chapterCount}}
+    Add chapter
+    {{else}}
+    Read story
+    {{/if}}
+    </a>
+</div>

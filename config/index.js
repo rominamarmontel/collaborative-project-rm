@@ -2,6 +2,7 @@
 const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const hbs = require('hbs')
 
 // ℹ️ Responsible for the messages you see in the terminal as requests are coming in
 // https://www.npmjs.com/package/morgan
@@ -31,6 +32,7 @@ module.exports = (app) => {
 
   // Normalizes the path to the views folder
   app.set('views', path.join(__dirname, '..', 'views'))
+  hbs.registerPartials(path.join(__dirname, '..', 'views', 'partials'))
   // Sets the view engine to handlebars
   app.set('view engine', 'hbs')
   // Handles access to the public folder
