@@ -34,14 +34,6 @@ router.get('/profile', async (req, res, next) => {
   res.render('profile', { finishedStories, toContinue })
 })
 
-router.get('/profile/create-story', (req, res, next) => {
-  try {
-    res.render('story/create-story')
-  } catch (error) {
-    next(error)
-  }
-})
-
 router.post('/profile/create-story', async (req, res, next) => {
   try {
     const chapter = await Chapter.create({
@@ -56,29 +48,9 @@ router.post('/profile/create-story', async (req, res, next) => {
     })
     console.log(req.body)
     res.redirect('/profile')
-  } catch (error) {}
-})
-
-router.get('/profile/continue-story', (req, res, next) => {
-  try {
-  } catch (error) {}
-})
-
-router.post('/profile/continue-story', (req, res, next) => {
-  try {
-  } catch (error) {}
-})
-
-router.get('/profile/read-story', (req, res, next) => {
-  try {
-    res.status(200).json()
-  } catch (error) {}
-})
-
-router.post('/profile/read-story', (req, res, next) => {
-  try {
-    res.status(200).json()
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 module.exports = router
