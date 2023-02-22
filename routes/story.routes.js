@@ -4,16 +4,23 @@ const Story = require('../models/Story.model')
 const Chapter = require('../models/Chapter.model')
 const mongoose = require('mongoose')
 const isAuthenticated = require('./../middlewares/isAuthenticated')
+const { render } = require('../app')
 
 // Get all the stories
 router.get('/stories', async (req, res, next) => {
-  const finishedStories = await Story.find({ chapterCount: 0 }).populate(
-    'chapters author'
-  )
+  const finishedStories = await Story.find(
+    { chapterCount: 0 },
+    {},
+    { sort: { updatedAt: -1 } }
+  ).populate('chapters author')
 
-  const unfinishedStories = await Story.find({
-    chapterCount: { $gt: 0 },
-  }).populate('chapters author')
+  const unfinishedStories = await Story.find(
+    {
+      chapterCount: { $gt: 0 },
+    },
+    {},
+    { sort: { updatedAt: -1 } }
+  ).populate('chapters author')
 
   res.render('stories', { finishedStories, unfinishedStories })
 })
@@ -51,9 +58,9 @@ router.get('/stories', async (req, res, next) => {
 // Create a story with a chapter
 router.post('/stories', async (req, res, next) => {
   try {
-    const unfinishedStories = await Story.find({
-      chapterCount: { $gt: 0 },
-    }).populate('chapters author')
+    // const unfinishedStories = await Story.find({
+    //   chapterCount: { $gt: 0 },
+    // }).populate('chapters author')
 
     const chapter = await Chapter.create({
       author: req.session.currentUser._id,
@@ -66,7 +73,7 @@ router.post('/stories', async (req, res, next) => {
       chapters: [chapter._id],
     })
     console.log(req.body)
-    res.redirect('stories')
+    res.redirect('/stories')
   } catch (error) {
     console.log(error)
   }
@@ -81,7 +88,13 @@ router.get('/stories/:storyId', async (req, res, next) => {
         path: 'author',
       },
     })
-    console.log(story)
+    // console.log(story)
+    const isUserAuthorOfLastChapter = story.chapters
+      .at(-1)
+      .author._id.equals(req.session.currentUser._id)
+
+    story.chapters.at(-1)._doc.editable = isUserAuthorOfLastChapter
+    // console.log(story.chapters.at(-1))
     //  res.json(chapter)
     res.render('oneStory', story)
   } catch (error) {
@@ -92,10 +105,22 @@ router.get('/stories/:storyId', async (req, res, next) => {
 // Add Chapter
 router.post('/stories/:storyId', async (req, res, next) => {
   try {
-    const newChapter = { ...req.body }
-    const addNewChapter = await Chapter.create(newChapter)
-    console.log(addNewChapter)
-    res.redirect('/oneStory')
+    const foundStory = await Story.findById(req.params.storyId)
+    if (!foundStory) {
+      return res.sendStatus(404)
+    }
+    if (foundStory.chapterCount === 0) {
+      return res.sendStatus(403) // forbidden
+    }
+    const chapter = await Chapter.create({
+      author: req.session.currentUser._id,
+      content: req.body.content,
+    })
+    await Story.findByIdAndUpdate(req.params.storyId, {
+      $push: { chapters: chapter._id },
+      $inc: { chapterCount: -1 },
+    })
+    res.redirect(`/stories/${req.params.storyId}`)
   } catch (error) {
     next(error)
   }

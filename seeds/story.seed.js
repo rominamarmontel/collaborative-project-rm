@@ -28,6 +28,7 @@ async function seedDatabase() {
     console.log(`Succesfully connected to ${db.connection.name} database.`)
     // await Story.deleteMany()
     // await User.deleteMany()
+
     await seedUsers()
     await seedStories()
     await mongoose.disconnect()

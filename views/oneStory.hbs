@@ -1,19 +1,30 @@
 <section id="onestory">
-  <div class="onstory-content">
-  <h2>{{title}}</h2>
-  {{#each chapters}}
+  <div class="onestory-content">
+    <h2>{{title}}</h2>
+    {{#each chapters}}
+    {{#if this._doc.editable}}
+    <a href="/chapters/{{this._id}}/edit">Edit chapter</a>
+    <form action="/chapters/{{this._id}}/delete" method="post">
+      <input type="submit" value="Delete">
+    </form>
+    {{/if}}
+    <p>{{this.content}}</p>
+    <p>{{this.author.username}}</p>
+    <img class="user-img
+    " src="{{this.author.picture_url}}" alt="{{this.author.username}}">
+    {{/each}}
+    <p>title:</p>
+    <h3>{{this.title}}</h3>
+    <p style="color: red">{{this.chapters.0.content}}</p>
+    <p>Author: {{ this.author.username }}</p>
+    <p>Last Update: {{dateFormat this.updatedAt "MM/DD/YYYY hh:m a"}}</p>
 
-  <p>{{this.content}}</p>
-  <p>{{this.author.username}}</p>
-  <img src="{{this.author.picture_url}}" alt="{{this.author.username}}">
-  {{/each}}
-      <p>title:</p><h3>{{this.title}}</h3>
-      <p style="color: red">{{this.chapters.0.content}}</p>
-      <p>Author: {{ this.author.username }}</p>
-      <p>Last Update: {{dateFormat this.updatedAt "MM/DD/YYYY hh:m a"}}</p>
-      <textarea placeholder="Add a new chapter"></textarea>
-      <button class="btn-add"><a href='/stories/:storyId' >Add</a></button>
-      <button class="btn-read">Edit</button>
-      <button class="btn-read">Delete</button>
+    {{#if chapterCount}}
+    <form action="/stories/{{this._id}}" method="post">
+      <textarea name="content" placeholder="Add a new chapter"></textarea>
+      <input type="submit" value="Add chapter">
+    </form>
+    {{/if}}
+
   </div>
 </section>
