@@ -1,7 +1,8 @@
-<h1>hello! oneStory</h1>
-{{#each chapter}}
-<p>{{this._id}}</p>
+<h1>hello! oneStory cou</h1>
+{{title}}
+{{#each chapters}}
 
-<p>{{chapter.title}}</p>
-<p>{{this.author}}</p>
+<p>{{this.content}}</p>
+<p>{{this.author.username}}</p>
+<img src="{{this.author.picture_url}}" alt="{{this.author.username}}">
 {{/each}}
