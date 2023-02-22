@@ -33,7 +33,7 @@ router.post('/login', async (req, res, next) => {
       })
     }
     req.session.currentUser = foundUser
-    res.redirect('stories')
+    res.redirect('/stories')
   } catch (error) {
     next(error)
   }
@@ -83,7 +83,6 @@ router.post('/signup', async (req, res, next) => {
     next(error)
   }
 })
-
 
 router.get('/logout', (req, res, next) => {
   req.session.destroy((error) => {
