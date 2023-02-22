@@ -58,7 +58,7 @@ router.post('/stories', async (req, res, next) => {
     const chapter = await Chapter.create({
       author: req.session.currentUser._id,
       // story: story._id,
-      content: req.body.story,
+      content: req.body.content,
     })
     const story = await Story.create({
       author: req.session.currentUser._id,
@@ -76,63 +76,26 @@ router.post('/stories', async (req, res, next) => {
 router.get('/stories/:storyId', async (req, res, next) => {
   try {
     const story = await Story.findById(req.params.storyId).populate({
-          path: 'chapters',
-          populate: {
-            path: 'author',
-          },
-        })
- console.log(story);
-     //  res.json(chapter)
+      path: 'chapters',
+      populate: {
+        path: 'author',
+      },
+    })
+    console.log(story)
+    //  res.json(chapter)
     res.render('oneStory', story)
   } catch (error) {
     console.log(error)
   }
 })
 
-// Edit a story and add a new chapter to a story
-router.post('/stories/edit/:storyId', async (req, res, next) => {
-  console.log(req.body)
+// Add Chapter
+router.post('/stories/:storyId', async (req, res, next) => {
   try {
-    const editStory = await Story.findByIdAndUpdate({
-      author: req.body.author,
-      title: req.body.title,
-      chapters: [chapter._id]
-    })
-    const editChapter = await Chapter.findByIdAndUpdate({
-      author: req.body.author,
-      content: req.body.content
-    })
-
-    const addNewChapter = await Story.findById(req.params.storyId)
-    const chapter = await Chapter.create({
-      author: req.session.currentUser._id,
-      // story: story._id,
-      content: req.body.story,
-    })
-
-    res.render('oneStory')
-  } catch (error) {
-    next(error)
-  }
-})
-
-//Delete a story
-router.post('/stories/:storyId/delete', async (req, res, next) => {
-  try {
-    await Story.findByIdAndDelete(req.params.storyId)
-    console.log({ message: `This story with id: ${req.params.storyId} was deleted` })
-    res.render('oneStory')
-  } catch (error) {
-    next(error)
-  }
-})
-
-//Delete a chapter
-router.post('/chapters/:chapterId/delete', async (req, res, next) => {
-  try {
-    await Chapter.findByIdAndDelete(req.params.chapterId)
-    console.log({ message: `This chapter with id: ${req.params.chapterId} was deleted` })
-    res.render('oneStory')
+    const newChapter = { ...req.body }
+    const addNewChapter = await Chapter.create(newChapter)
+    console.log(addNewChapter)
+    res.redirect('/oneStory')
   } catch (error) {
     next(error)
   }
