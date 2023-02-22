@@ -13,8 +13,10 @@ router.get('/stories', async (req, res, next) => {
   const unfinishedStories = await Story.find({
     chapterCount: { $gt: 0 },
   }).populate('chapters author')
-
-  res.render('stories', { finishedStories, unfinishedStories })
+  unfinishedStories = res.render('stories', {
+    finishedStories,
+    unfinishedStories,
+  })
 })
 
 // router.get('/stories', async (req, res, next) => {
@@ -49,6 +51,10 @@ router.get('/stories', async (req, res, next) => {
 
 router.post("/stories", async (req, res, next) => {
   try {
+    let unfinishedStories = await Story.find({
+      chapterCount: { $gt: 0 },
+    }).populate('chapters author')
+
     const chapter = await Chapter.create({
       author: req.session.currentUser._id,
       // story: story._id,
@@ -66,22 +72,35 @@ router.post("/stories", async (req, res, next) => {
   }
 });
 
-router.get("/stories/:storyId", async (req, res, next) => {
-  console.log('here');
+
+router.get('/stories/:storyId', async (req, res, next) => {
   try {
-    const oneStory = await Story.findById(req.params.storyId).populate('chapters');
-    res.json(oneStory)
+    const chapter = await Story.findById(req.params.storyId).populate('chapters')
+    // res.render('oneStory', chapter)
+    //  res.json(chapter)
+    console.log('chapter:', chapter)
   } catch (error) {
-    next(error);
+    console.log(error)
   }
-});
+})
 
-// router.post('/stories/:storyId', (req, res, next) => {
-//   // const editStory =
-//   // const addChapter =
-//   res.render('oneStory')
-// })
-
+router.post('/stories/:id/edit', async (req, res, next) => {
+  console.log(req.body)
+  try {
+    const updatedChapter = await Chapter.findByIdAndUpdate({
+      author: req.session.currentUser._id,
+      content: req.body.story,
+    })
+    const updatedStory = await Story.findByIdAndUpdate({
+      author: req.session.currentUser._id,
+      title: req.body.title,
+      chapters: [chapter._id],
+    })
+    res.redirect('stories')
+  } catch (error) {
+    next(error)
+  }
+})
 
 // router.post('/stories/:storyId/delete', (req, res, next) => {
 //   // const deleteStory =

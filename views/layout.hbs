@@ -11,13 +11,21 @@
 
   <body>
     <header>
+      <h1>Exquisite</h1>
       <nav>
-        <ul>
           {{#if isLoggedIn}}
-            <li><button id="logout-button">
+        <div class="first">
+          <a href="/stories">HOME</a>
+          <a href="/stories/myStory">My Story</a>
+        </div>
+        <ul class="second">
+          <li class="third">Hi! {{currentUser.username}}</li>
+          <li>
+            <button id="logout-button">
               <a href='/logout'>Logout</a>
-            </button></li> 
-          {{/if}}
+            </button>
+          </li>
+        {{/if}}
         </ul>
       </nav>
     </header>
