@@ -1,12 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-:root {
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700);
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Readex+Pro:wght@700&display=swap');
+/* :root {
   --color-primary:rgb(141,194,111);
   --color-secondary: rgba(118,184,82,1);
   --color-butoon-primary:#43A047;
   --color-button-secondary: #4CAF50;
   --color-error: rgb(246, 141, 141);
   --color-input: #f2f2f2;
-}
+} */
 /* :root {
   --color-primary:rgb(254, 148, 27);
   --color-secondary: rgb(245, 146, 40);
@@ -16,6 +17,17 @@
   --color-input: #f2f2f2;
   --color-logout: rgb(169, 69, 41);
 } */
+:root {
+  --color-primary:rgb(27, 216, 254);
+  --color-secondary: rgb(40, 211, 245);
+  --color-butoon-primary:#1acae5;
+  --color-button-secondary: #26c8f0;
+  --color-error: rgb(52, 201, 242);
+  --color-input: #f2f2f2;
+  --color-logout: rgb(255, 255, 255);
+}
+
+/* common */
 body {
   background: var(--color-primary);
   background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-button-secondary) 50%);
@@ -29,30 +41,63 @@ a {
   font-size: 1rem;
   text-decoration: none;
 }
-
 .container {
   position: relative;
   z-index: 1;
   max-width: 80%;
   margin: 0 auto;
 }
-
-header ul {
+button {
+  box-shadow: 2px 2px 3px rgb(140, 140, 140);
+}
+/* header */
+header {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  gap: 3rem;
+}
+header h1 {
+  font-family: "Pacifico";
+  font-size: 4rem;
+  color: rgb(252, 179, 43);
+  padding-left: 2rem;
+  text-shadow: 2px 2px 3px #fff;
+}
+.first a {
+  color:rgb(255, 255, 255);
+}
+header nav {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40rem;
+  align-items: center;
+}
+header .first {
+  display: flex;
+  align-items: center;
   list-style: none;
   text-decoration: none;
   margin-right: 3rem;
+  color:#FFFFFF;
+  gap: 3rem;
+}
+header .second {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  text-decoration: none;
+  color:#FFFFFF;
+  gap: .5rem;
 }
 header #logout-button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: var(--color-logout);
+  background:  rgb(252, 179, 43);
   width: 100%;
   border: 0;
-  padding: 15px;
+  padding: 10px 15px;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
@@ -60,26 +105,63 @@ header #logout-button {
   border-radius: 5px;
 }
 header a {
-  color: #FFFFFF;
-  font-weight: bold;
+  color: #fff;
+
 }
+
+/* stories */
 .stories-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
   width: 100%;
 }
 .stories-container .content {
   max-width: 350px;
-  background-color: rgb(251, 230, 135);
-  border-radius: 5px;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 30px;
+  padding-bottom: 2rem;
 }
 .stories-container form {
   margin: 2rem 3rem;
+  text-align: left;
+}
+.stories-container h2 {
+  font-family: "Roboto", sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 3px rgb(115, 114, 114);
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+.stories-container  #label-title, .stories-container  #label-sujet {
+  color: gray;
+}
+.stories-container input {
+  margin: .5rem 0 1rem 0;
+}
+.stories-container .story {
+  margin: 3rem 0;
+}
+.stories-container button {
+  margin-top: 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
 }
 
+
 /* storyCard-content */
+.storyCard-content p, h3 {
+  margin: 0;
+}
+.storyCard-content p {
+  color: gray;
+}
+.storyCard-content a {
+  color: #FFFFFF;
+  font-weight: normal;
+}
 .storyCard-content .btn-add {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -97,6 +179,7 @@ header a {
 form button:hover,form button:active,form button:focus {
   background: var(--color-butoon-primary);
 }
+
 /* login-page */
 .login-page a {
   color: var(--color-butoon-primary);

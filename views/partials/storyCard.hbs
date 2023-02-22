@@ -1,10 +1,12 @@
 <div class="storyCard-content">
-    <h3>{{this.title}}</h3>
+    <p>title:</p><h3>{{this.title}}</h3>
     <p style="color: red">{{this.chapters.0.content}}</p>
-    {{ this.author.username }} {{dateFormat this.updatedAt "dddd, MMMM Do YYYY"}}
+    <p>Author: {{ this.author.username }}</p>
+    <p>Last Update: {{dateFormat this.updatedAt "MM/DD/YYYY hh:m a"}}</p>
+    
     <a href="/stories/{{this._id}}">
     {{#if this.chapterCount}}
-    <button class="btn-add">Add chapter</button>
+    <button class="btn-add"><a href='/stories/{{_id}}' >Add chapter</a></button>
     {{else}}
     <button class="btn-read">Read story</button>
     {{/if}}

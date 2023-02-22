@@ -13,8 +13,10 @@ router.get('/stories', async (req, res, next) => {
   let unfinishedStories = await Story.find({
     chapterCount: { $gt: 0 },
   }).populate('chapters author')
-
-  res.render('stories', { finishedStories, unfinishedStories })
+  unfinishedStories = res.render('stories', {
+    finishedStories,
+    unfinishedStories,
+  })
 })
 
 // router.get('/stories', async (req, res, next) => {
@@ -49,6 +51,10 @@ router.get('/stories', async (req, res, next) => {
 
 router.post('/stories', async (req, res, next) => {
   try {
+    let unfinishedStories = await Story.find({
+      chapterCount: { $gt: 0 },
+    }).populate('chapters author')
+
     const chapter = await Chapter.create({
       author: req.session.currentUser._id,
       // story: story._id,
@@ -59,24 +65,47 @@ router.post('/stories', async (req, res, next) => {
       title: req.body.title,
       chapters: [chapter._id],
     })
-    console.log(req.body)
     res.redirect('stories')
   } catch (error) {
     console.log(error)
   }
 })
 
-router.get('/stories/:StoryId', async (req, res, next) => {
-  const oneStory = await Story.find({
-    title: req.body.title,
-    author: req.body.author,
-    chapters: req.body.chapters,
-  })
-  res.render('oneStory')
+// router.get('/stories/:StoryId', async (req, res, next) => {
+//   const oneStory = await Story.find({
+//     title: req.body.title,
+//     author: req.body.author,
+//     chapters: req.body.chapters,
+//   })
+//   res.render('oneStory')
+// })
+router.get('/stories/:id', async (req, res, next) => {
+  try {
+    const chapter = await Story.findById(req.params.id).populate('chapters')
+    // res.render('oneStory', chapter)
+    //  res.json(chapter)
+    console.log('chapter:', chapter)
+  } catch (error) {
+    console.log(error)
+  }
 })
 
-router.post('/stories/:StoryId', (req, res, next) => {
-  res.render('oneStory')
+router.post('/stories/:id/edit', async (req, res, next) => {
+  console.log(req.body)
+  try {
+    const updatedChapter = await Chapter.findByIdAndUpdate({
+      author: req.session.currentUser._id,
+      content: req.body.story,
+    })
+    const updatedStory = await Story.findByIdAndUpdate({
+      author: req.session.currentUser._id,
+      title: req.body.title,
+      chapters: [chapter._id],
+    })
+    res.redirect('stories')
+  } catch (error) {
+    next(error)
+  }
 })
 
 module.exports = router
