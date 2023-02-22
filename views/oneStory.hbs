@@ -1,3 +1,13 @@
+
+<h1>hello! oneStory cou</h1>
+{{title}}
+{{#each chapters}}
+
+<p>{{this.content}}</p>
+<p>{{this.author.username}}</p>
+<img src="{{this.author.picture_url}}" alt="{{this.author.username}}">
+{{/each}}
+
 <div class="storyCard-content">
     <p>title:</p><h3>{{this.title}}</h3>
     <p style="color: red">{{this.chapters.0.content}}</p>

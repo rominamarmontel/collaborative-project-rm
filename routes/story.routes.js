@@ -5,6 +5,7 @@ const Chapter = require('../models/Chapter.model')
 const mongoose = require('mongoose')
 const isAuthenticated = require('./../middlewares/isAuthenticated')
 
+// Get all the stories
 router.get('/stories', async (req, res, next) => {
   const finishedStories = await Story.find({ chapterCount: 0 }).populate(
     'chapters author'
@@ -47,9 +48,10 @@ router.get('/stories', async (req, res, next) => {
 //   }
 // }
 
+// Create a story with a chapter
 router.post('/stories', async (req, res, next) => {
   try {
-    let unfinishedStories = await Story.find({
+    const unfinishedStories = await Story.find({
       chapterCount: { $gt: 0 },
     }).populate('chapters author')
 
@@ -70,39 +72,78 @@ router.post('/stories', async (req, res, next) => {
   }
 })
 
+// Get one story
 router.get('/stories/:storyId', async (req, res, next) => {
   try {
-    const chapter = await Story.findById(req.params.storyId).populate(
-      'chapters author'
-    )
-    res.render('oneStory', chapter)
-    //res.json(chapter)
+    const story = await Story.findById(req.params.storyId).populate({
+          path: 'chapters',
+          populate: {
+            path: 'author',
+          },
+        })
+ console.log(story);
+     //  res.json(chapter)
+    res.render('oneStory', story)
   } catch (error) {
     console.log(error)
   }
 })
 
-router.post('/stories/:id/edit', async (req, res, next) => {
+// Edit a story and add a new chapter to a story
+router.post('/stories/edit/:storyId', async (req, res, next) => {
   console.log(req.body)
   try {
-    const updatedChapter = await Chapter.findByIdAndUpdate({
+    const editStory = await Story.findByIdAndUpdate({
+      author: req.body.author,
+      title: req.body.title,
+      chapters: [chapter._id]
+    })
+    const editChapter = await Chapter.findByIdAndUpdate({
+      author: req.body.author,
+      content: req.body.content
+    })
+
+    const addNewChapter = await Story.findById(req.params.storyId)
+    const chapter = await Chapter.create({
       author: req.session.currentUser._id,
+      // story: story._id,
       content: req.body.story,
     })
-    const updatedStory = await Story.findByIdAndUpdate({
-      author: req.session.currentUser._id,
-      title: req.body.title,
-      chapters: [chapter._id],
-    })
-    res.redirect('stories')
+
+    res.render('oneStory')
   } catch (error) {
     next(error)
   }
 })
 
-// router.post('/stories/:storyId/delete', (req, res, next) => {
-//   // const deleteStory =
-//   res.render('oneStory')
-// })
+//Delete a story
+router.post('/stories/:storyId/delete', async (req, res, next) => {
+  try {
+    await Story.findByIdAndDelete(req.params.storyId)
+    console.log({ message: `This story with id: ${req.params.storyId} was deleted` })
+    res.render('oneStory')
+  } catch (error) {
+    next(error)
+  }
+})
+
+//Delete a chapter
+router.post('/chapters/:chapterId/delete', async (req, res, next) => {
+  try {
+    await Chapter.findByIdAndDelete(req.params.chapterId)
+    console.log({ message: `This chapter with id: ${req.params.chapterId} was deleted` })
+    res.render('oneStory')
+  } catch (error) {
+    next(error)
+  }
+})
+
+// Read a story
+router.get('/stories', async (req, res, next) => {
+  const finishedStories = await Story.find({ chapterCount: 0 }).populate(
+    'chapters author'
+  )
+  res.render('readFinishedStory', { finishedStories })
+})
 
 module.exports = router
