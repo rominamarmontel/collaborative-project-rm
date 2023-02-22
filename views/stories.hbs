@@ -1,16 +1,15 @@
 <div class="stories-container">
     <section id="created">
         <div class="content">
-        <h2>Create a story</h2>
+            <h2>Create a story</h2>
             <form action="/stories" method="post">
                 <label for="title" id="label-title">Your story's title</label>
-                <input type="text" name="title" id="title" placeholder="Title"/>
+                <input type="text" name="title" id="title" placeholder="Title" />
                 <label for="sujet" id="label-sujet"></label>
-                <textarea id="story" name="story" placeholder="The first chapter of your story"
-                rows="10" cols="20">
+                <textarea id="content" name="content" placeholder="The first chapter of your story" rows="10" cols="20">
                 </textarea>
                 <div class="operation">
-            <button id="button-create-story">Create your Story</button>
+                    <button id="button-create-story">Create your Story</button>
                 </div>
             </form>
         </div>
@@ -20,9 +19,7 @@
         <div class="content">
             <h2>Unfinished stories</h2>
             {{#each unfinishedStories}}
-                <form action="/stories/oneStory" method="post">
-                    {{> storyCard this}}
-                </form>
+            {{> storyCard this}}
             {{/each}}
         </div>
     </section>
@@ -31,9 +28,7 @@
         <div class="content">
             <h2>Finished stories</h2>
             {{#each finishedStories}}
-                <form action="/stories/readStory" method="post">
-                    {{> storyCard this}}
-                </form>
+            {{> storyCard this}}
             {{/each}}
         </div>
     </section>

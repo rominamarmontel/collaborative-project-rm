@@ -13,5 +13,7 @@ router.use('/', require('./auth.routes'))
 
 router.use(isAuthenticated)
 router.use('/', require('./story.routes'))
+router.use('/', require('./chapter.routes'))
+router.use('/', require('./myStory.routes'))
 
 module.exports = router
