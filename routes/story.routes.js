@@ -73,11 +73,10 @@ router.post('/stories', async (req, res, next) => {
 router.get('/stories/:storyId', async (req, res, next) => {
   try {
     const chapter = await Story.findById(req.params.storyId).populate(
-      'chapters'
+      'chapters author'
     )
-    // res.render('oneStory', chapter)
-    //  res.json(chapter)
-    console.log('chapter:', chapter)
+    res.render('oneStory', chapter)
+    //res.json(chapter)
   } catch (error) {
     console.log(error)
   }
