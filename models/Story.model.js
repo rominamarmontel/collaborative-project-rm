@@ -19,10 +19,12 @@ const storySchema = new Schema(
       min: 0,
       default: 5,
     },
-    chapters: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Chapter'
-    }]
+    chapters: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Chapter',
+      },
+    ],
   },
   { timestamps: true }
 )

@@ -1,31 +1,8 @@
-{{!-- <section id="myStory">
-    <div class="content">
-        <h2>MyStory</h2>
-        {{#each allMyStory}}
-        <form action="/myStory/:id" method="post">
-            {{> storyCard this}}
-        </form>
-        {{/each}}
-    </div>
-</section> --}}
-
 <section id="mystory">
     <div class="mystory-content">
-        <h2>{{ title }}</h2>
+        <h2>My Story</h2>
         {{#each allMyStory}}
-        {{!-- <p>{{this.title}}</p>
-        <p>{{this.author.username}}</p>
-        <img src="{{this.author.picture_url}}" alt="{{this.author.username}}"> --}}
         {{> storyCard this}}
         {{/each}}
-
-        <p>title:</p>
-        <h3>{{this.title}}</h3>
-        <p style="color: red">{{this.chapters.0.content}}</p>
-        <p>Author: {{ this.author.username }}</p>
-        <p>Last Update: {{dateFormat this.updatedAt "MM/DD/YYYY hh:mm a"}}</p>
-        <button class="btn-edit"><a href='/myStory/:storyId'>EDIT</a></button>
-        <button class="btn-delete"><a href='/myStory/:storyId'>DELETE</a></button>
-
     </div>
 </section>

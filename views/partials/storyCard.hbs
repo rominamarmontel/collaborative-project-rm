@@ -1,16 +1,13 @@
 <div class="storyCard-content">
-    <p>title:</p>
-    <h3>{{this.title}}</h3>
-    <p style="color: red">{{this.chapters.0.content}}</p>
+    <h3> {{this.title}}</h3>
+    <h5>{{this.chapters.0.content}}</h5>
     <p>Author: {{ this.author.username }}</p>
     <p>Last Update: {{dateFormat this.updatedAt "MM/DD/YYYY hh:m a"}}</p>
-
     <a href="/stories/{{this._id}}">
         {{#if this.chapterCount}}
-        <button class="btn-add"><a href='/stories/{{_id}}'>Add chapter</a></button>
+        <button class="btn-add">Add chapter</button>
         {{else}}
-        <button class="btn-read"><a href='/stories/{{_id}}'>Read story</a></button>
-        {{!-- <button class="btn-read">Read story</button> --}}
+        <button class="btn-read">Read story</button>
         {{/if}}
     </a>
 </div>

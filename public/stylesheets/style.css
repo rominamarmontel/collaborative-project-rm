@@ -44,11 +44,12 @@ a {
 .container {
   position: relative;
   z-index: 1;
-  max-width: 80%;
+  max-width: 100%;
   margin: 0 auto;
 }
 button {
   box-shadow: 2px 2px 3px rgb(140, 140, 140);
+  border: none;
 }
 /* header */
 header {
@@ -57,9 +58,9 @@ header {
 }
 header h1 {
   font-family: "Pacifico";
-  font-size: 2rem;
+  font-size: 4rem;
   color: rgb(252, 179, 43);
-  padding-left: 2rem;
+  padding-left: 1rem;
   line-height: 130%;
   text-shadow: 2px 2px 3px #fff;
   text-align: center;
@@ -67,12 +68,14 @@ header h1 {
 .first a {
   color:rgb(255, 255, 255);
   white-space: nowrap;
+  font-size: 1rem;
+  font-weight: bold;
 }
 header nav {
   display: flex;
   align-items: center;
-  gap: 35rem;
-  margin-right: 2rem;
+  gap: 30rem;
+  margin-right: 3rem;
 }
 header .first {
   display: flex;
@@ -114,18 +117,18 @@ header a {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   width: 100%;
 }
+.stories-container section {
+  width: 30%;
+}
 .stories-container .content {
-  max-width: 350px;
-  border: 2px solid rgb(255, 255, 255);
-  border-radius: 30px;
-  padding-bottom: 2rem;
+  width: 100%;
 }
 .stories-container form {
-  margin: 2rem 3rem;
   text-align: left;
+  width: 80%;
 }
 .stories-container h2 {
   font-family: "Roboto", sans-serif;
@@ -150,19 +153,35 @@ header a {
   font-size: 1rem;
 }
 
-
 /* storyCard-content */
+.storyCard-content {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  text-align: left;
+  padding: 2rem;
+}
 .storyCard-content p, h3 {
   margin: 0;
 }
+.storyCard-content h3 {
+  padding-bottom: 1rem;
+}
 .storyCard-content p {
   color: gray;
+  font-size: .8rem;
+}
+.storyCard-content h5 {
+  padding-bottom: 1rem;
+  font-weight: normal;
+  font-size: 1rem;
+  margin: 0;
 }
 .storyCard-content a {
   color: #FFFFFF;
   font-weight: normal;
 }
-.storyCard-content .btn-add {
+.storyCard-content .btn-add, .storyCard-content .btn-read {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -176,11 +195,117 @@ header a {
   transition: all 0.3 ease;
   cursor: pointer;
 }
-form button:hover,form button:active,form button:focus {
+.storyCard-content .btn-add:hover, .storyCard-content .btn-read:hover, .storyCard-content .btn-add:active, .storyCard-content .btn-read:active, .storyCard-content .btn-add:focus, .storyCard-content .btn-read:focus {
   background: var(--color-butoon-primary);
 }
+/* myStories -----------------------------------*/
+#mystory {
+  margin: 0 auto;
+  width: 50%;
+}
 
-/* login-page */
+
+/* oneStory ----------------------------*/
+#onestory h2 {
+  font-family: "Roboto", sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 3px rgb(115, 114, 114);
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+#onestory h3 {
+  padding: 1rem 0;
+}
+#onestory {
+  width: 50%;
+  margin: 0 auto;
+}
+#onestory form {
+  box-shadow: none;
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+#onestory textarea {
+  border: none;
+  background-color: #efeaea;
+  width: 100%;
+  height: 50px;
+  padding-bottom: 2rem;
+  margin-bottom: .5rem;
+}
+.third-content .add-chapter input {
+  width: 30%;
+  border-radius: 20px;
+  background-color: rgb(252, 179, 43);
+  padding: 10px;
+  box-shadow: 2px 2px 3px rgb(115, 114, 114);
+}
+#onestory .onestory-container {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+}
+.user-img {
+  width: 40px;
+  height: 40px;
+}
+#onestory .image-name {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: .5rem;
+}
+.image-name div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.image-name p {
+  margin: 0;
+  color: gray;
+  font-size: .9rem;
+}
+.image-name h5 {
+  font-family: "Roboto";
+  margin: 0;
+  color: black;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.delete-button {
+  background-color: gray;
+}
+.third-content .edit-chapter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.third-content a {
+  margin: 0;
+  color: var(--color-primary);
+  text-align: center;
+}
+.editchapter form {
+  background-color: transparent;
+  text-align: left;
+  width: 10px;
+}
+.editchapter input {
+  background-color: transparent;
+  text-align: left;
+  width: 10px;
+}
+.add-chapter {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+/* login-page -----------------------------------*/
 .login-page a {
   color: var(--color-butoon-primary);
 }
