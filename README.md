@@ -20,6 +20,9 @@ First, we had the idea of doing some sort of online diary then the teachers impr
 - Add a field to upload his user image to display it on the app.
 - Add a delete function for the finished stories to be able to remove it.
 _ Improve the design to fit more with the theme of the app about writing.
+- Improve the menu for the UX.
 - Make it responsive.
+- ...
 
-## [Link to our app](https://exquisite-stories.onrender.com/)
+## [Link to Exquisite Stories app](https://exquisite-stories.onrender.com/)
+
