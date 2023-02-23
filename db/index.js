@@ -8,7 +8,6 @@ require('dotenv/config')
 
 const MONGO_URI =
   process.env.MONGODB_URI || 'mongodb://localhost/exquisite-story'
-
 async function openConnection() {
   try {
     return await mongoose.connect(MONGO_URI)

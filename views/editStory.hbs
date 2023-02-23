@@ -1,0 +1,15 @@
+<form action=`/stories/{{this._id}}` method="post">
+  <h2>{{foundStory.title}}</h2>
+  <img src="{{foundStory.author.picture_url}}" alt="">
+  <p>{{foundStory.author.username}}</p>
+
+  {{!-- <input type="text" name="title" id="title" placeholder={{foundStory.chapters.0.content}} /> --}}
+
+  {{!-- {{#each foundStory}} --}}
+  {{!-- {{/each}} --}}
+  {{!-- {{#each foundStory.chapters}}
+  <p>{{this.content}}</p>
+  {{/each}} --}}
+  <textarea id="content" name="content" placeholder={{foundStory.chapters.0.content}} rows="20" cols="42"></textarea>
+  <input type="submit" value="Edit">
+</form>
