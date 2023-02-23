@@ -4,7 +4,6 @@ const Story = require('../models/Story.model')
 const Chapter = require('../models/Chapter.model')
 const mongoose = require('mongoose')
 const isAuthenticated = require('./../middlewares/isAuthenticated')
-const { render } = require('../app')
 
 // Get all the stories
 router.get('/stories', async (req, res, next) => {
@@ -71,6 +70,7 @@ router.post('/stories', async (req, res, next) => {
       author: req.session.currentUser._id,
       title: req.body.title,
       chapters: [chapter._id],
+      // chapterCount: req.body.chapterCount,--->stories.hbs line 10
     })
     console.log(req.body)
     res.redirect('/stories')
@@ -86,14 +86,18 @@ router.get('/stories/:storyId', async (req, res, next) => {
       path: 'chapters',
       populate: {
         path: 'author',
+        model: User,
       },
     })
-    // console.log(story)
-    const isUserAuthorOfLastChapter = story.chapters
-      .at(-1)
-      .author._id.equals(req.session.currentUser._id)
+    console.log('ines', story.chapters[story.chapters.length - 1])
+    if (story.chapters.at(-1)) {
+      const isUserAuthorOfLastChapter = story.chapters
+        .at(-1)
+        .author._id.equals(req.session.currentUser._id)
 
-    story.chapters.at(-1)._doc.editable = isUserAuthorOfLastChapter
+      story.chapters.at(-1)._doc.editable = isUserAuthorOfLastChapter
+    }
+
     // console.log(story.chapters.at(-1))
     //  res.json(chapter)
     res.render('oneStory', story)

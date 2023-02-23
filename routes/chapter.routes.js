@@ -4,7 +4,12 @@ const router = require('express').Router()
 
 router.get('/chapters/:chapterId/edit', async (req, res, next) => {
   try {
-    res.send('chapter edit form here')
+    const { chapterId } = req.params
+    const foundStory = await Story.findOne({ chapters: chapterId }).populate(
+      'chapters author'
+    )
+    res.render('editStory', { foundStory })
+    //res.json(foundStory)
   } catch (error) {
     console.log(error)
   }
@@ -31,7 +36,7 @@ router.post('/chapters/:chapterId/edit', async (req, res, next) => {
 
     await Chapter.findByIdAndUpdate(chapterId, { content })
 
-    res.redirect(`/stories/${foundStory.id}`)
+    res.redirect(`/stories/${req.params.storyId}`)
   } catch (error) {
     console.log(error)
   }

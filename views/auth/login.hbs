@@ -2,12 +2,13 @@
   <div class="login-page">
     <form action='/login' method='post'>
       <div>
-        <label for='username'>Username: </label>
-        <input type='text' id='username' name='username' placeholder='Username' value="marianne" />
+        {{!-- <label for='username'>Username: </label> --}}
+        <input type='text' id='username' name='username' placeholder='Enter your username' />
       </div>
       <div>
-        <label for='password'>Password: </label>
-        <input type='password' required id='password' name='password' autocomplete="on" value="123456789" />
+        {{!-- <label for='password'>Password: </label> --}}
+        <input type='password' required id='password' name='password' autocomplete="on"
+          placeholder='Enter your password' />
       </div>
       <section>
         {{#if errorMessage}}
