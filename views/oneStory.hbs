@@ -1,30 +1,41 @@
 <section id="onestory">
-  <div class="onestory-content">
-    <h2>{{title}}</h2>
-    {{#each chapters}}
-    {{#if this._doc.editable}}
-    <a href="/chapters/{{this._id}}/edit">Edit chapter</a>
-    <form action="/chapters/{{this._id}}/delete" method="post">
-      <input type="submit" value="Delete">
-    </form>
-    {{/if}}
-    <p>{{this.content}}</p>
-    <p>{{this.author.username}}</p>
-    <img class="user-img
-    " src="{{this.author.picture_url}}" alt="{{this.author.username}}">
-    {{/each}}
-    <p>title:</p>
-    <h3>{{this.title}}</h3>
-    <p style="color: red">{{this.chapters.0.content}}</p>
-    <p>Author: {{ this.author.username }}</p>
-    <p>Last Update: {{dateFormat this.updatedAt "MM/DD/YYYY hh:m a"}}</p>
+  <h2>Add chapter</h2>
+  <div class="onestory-container">
+    <div class="first-content">
+      <h3>{{title}}</h3>
+      {{#each chapters}}
+      <div class="image-name">
+        <img class="user-img" src="{{this.author.picture_url}}" alt="{{this.author.username}}">
+        <div>
+          <h5>{{ this.author.username }}</h5>
+          <p>Last Update: {{dateFormat this.updatedAt "MM/DD/YYYY hh:m a"}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="second-content">
+      <p>{{this.content}}</p>
+    </div>
 
-    {{#if chapterCount}}
-    <form action="/stories/{{this._id}}" method="post">
-      <textarea name="content" placeholder="Add a new chapter"></textarea>
-      <input type="submit" value="Add chapter">
-    </form>
-    {{/if}}
-
+    <div class="third-content">
+      {{#if this._doc.editable}}
+      <div class="edit-chapter">
+        <a href="/chapters/{{this._id}}/edit">Edit a chapter</a>
+        <form action="/chapters/{{this._id}}/delete" method="post">
+          <input type="submit" value="Delete?">
+        </form>
+      </div>
+      <hr>
+      {{/if}}
+      {{/each}}
+      <div class="add-chapter">
+        {{#if chapterCount}}
+        <form action="/stories/{{this._id}}" method="post">
+          <textarea name="content" placeholder="Add a new chapter"></textarea>
+          <input type="submit" value="Add">
+        </form>
+        {{/if}}
+      </div>
+    </div>
   </div>
 </section>
+{{!-- <p>{{this.chapters.0.content}}</p> --}}

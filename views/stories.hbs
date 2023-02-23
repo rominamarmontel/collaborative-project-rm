@@ -3,10 +3,10 @@
         <div class="content">
             <h2>Create a story</h2>
             <form action="/stories" method="post">
-                <label for="title" id="label-title">Your story's title</label>
                 <input type="text" name="title" id="title" placeholder="Title" />
                 <label for="sujet" id="label-sujet"></label>
-                <textarea id="content" name="content" placeholder="The first chapter of your story" rows="10" cols="20">
+                <textarea id="content" name="content" placeholder="The first chapter of your story" rows="20"
+                    cols="42%">
                 </textarea>
                 <div class="operation">
                     <button id="button-create-story">Create your Story</button>
@@ -17,19 +17,23 @@
 
     <section id="unfinished">
         <div class="content">
-            <h2>Unfinished stories</h2>
-            {{#each unfinishedStories}}
-            {{> storyCard this}}
-            {{/each}}
+            <h2>Wanna Continue?</h2>
+            <div class="unfinished">
+                {{#each unfinishedStories}}
+                {{> storyCard this}}
+                {{/each}}
+            </div>
         </div>
     </section>
 
     <section id="finished">
         <div class="content">
-            <h2>Finished stories</h2>
-            {{#each finishedStories}}
-            {{> storyCard this}}
-            {{/each}}
+            <h2>Ready to read?</h2>
+            <div class="finished">
+                {{#each finishedStories}}
+                {{> storyCard this}}
+                {{/each}}
+            </div>
         </div>
     </section>
 </div>
