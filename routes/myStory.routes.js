@@ -13,7 +13,7 @@ router.get('/myStories', async (req, res, next) => {
     },
     {},
     { sort: { updatedAt: -1 } }
-  ).populate('chapters')
+  ).populate('chapters author')
 
   res.render('myStories', { allMyStory })
   //res.json(allMyStory)

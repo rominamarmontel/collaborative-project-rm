@@ -27,11 +27,12 @@ router.post("/chapters/:chapterId/edit", async (req, res, next) => {
   try {
     const { chapterId } = req.params;
     const { content } = req.body;
-
+    
     const foundStory = await Story.findOne({ chapters: chapterId }).populate(
       "chapters"
     );
     if (!foundStory) {
+
       return res.render("not-found");
     }
     const lastChapter = foundStory.chapters.at(-1);
@@ -39,6 +40,7 @@ router.post("/chapters/:chapterId/edit", async (req, res, next) => {
     const userIsAuthor = lastChapter.author.equals(req.session.currentUser._id);
 
     console.log(thisChapterIsLast, userIsAuthor);
+
     if (!thisChapterIsLast || !userIsAuthor) {
       return res.sendStatus(403); //forbidden
     }
