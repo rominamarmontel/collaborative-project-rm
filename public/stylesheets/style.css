@@ -25,6 +25,13 @@
   --color-error: rgb(52, 201, 242);
   --color-input: #f2f2f2;
   --color-logout: rgb(255, 255, 255);
+  --color-danger : rgb(218, 73, 73);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;  
 }
 
 /* common */
@@ -34,8 +41,7 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  padding: 0;  
+  overflow: hidden;
 }
 a {
   font-size: 1rem;
@@ -51,16 +57,53 @@ button {
   box-shadow: 2px 2px 3px rgb(140, 140, 140);
   border: none;
 }
+#btn-add {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: var(--color-button-secondary);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+button:hover,form button:active,form button:focus {
+  background: var(--color-butoon-primary);
+}
+#btn-read {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: orange;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.user-img {
+  width: 40px;
+  height: 40px;
+}
+
 /* header */
 header {
   display: flex;
   justify-content: space-between;
+  padding: 0 2.5rem;
+  margin-bottom: 3rem;
 }
 header h1 {
   font-family: "Pacifico";
   font-size: 4rem;
   color: rgb(252, 179, 43);
-  padding-left: 1rem;
   line-height: 130%;
   text-shadow: 2px 2px 3px #fff;
   text-align: center;
@@ -74,8 +117,7 @@ header h1 {
 header nav {
   display: flex;
   align-items: center;
-  gap: 30rem;
-  margin-right: 3rem;
+  gap: 3rem;
 }
 header .first {
   display: flex;
@@ -87,12 +129,11 @@ header .first {
 }
 header .second {
   display: flex;
-  flex-direction: column;
   align-items: center;
   list-style: none;
   text-decoration: none;
   color:#FFFFFF;
-  gap: .5rem;
+  gap: 1rem;
 }
 header #logout-button {
   font-family: "Roboto", sans-serif;
@@ -123,12 +164,19 @@ header a {
 .stories-container section {
   width: 30%;
 }
-.stories-container .content {
-  width: 100%;
+
+.stories-container .content>div, .stories-container form{
+  height: calc(100vh - 12rem);
+  overflow-y: scroll;
 }
+
 .stories-container form {
   text-align: left;
-  width: 80%;
+}
+
+.stories-container form>textarea {
+  width: 100%;
+  height: calc(100vh - 26rem);;
 }
 .stories-container h2 {
   font-family: "Roboto", sans-serif;
@@ -137,6 +185,7 @@ header a {
   text-align: center;
   font-weight: 700;
   font-size: 2rem;
+  padding-bottom: 1rem;
 }
 .stories-container  #label-title, .stories-container  #label-sujet {
   color: gray;
@@ -204,6 +253,27 @@ header a {
   width: 50%;
 }
 
+/* editStory----------------------------*/
+#editStory div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#editstory textarea {
+  border: none;
+  background-color: #efeaea;
+  width: 100%;
+  height: auto;
+  padding-bottom: 2rem;
+}
+#editStory input {
+  width: 50%;
+  border-radius: 10px;
+  background-color: rgb(252, 179, 43);
+  padding: 10px;
+  box-shadow: 2px 2px 3px rgb(115, 114, 114);
+  margin-top: 1rem;
+}
 
 /* oneStory ----------------------------*/
 #onestory h2 {
@@ -233,25 +303,21 @@ header a {
   border: none;
   background-color: #efeaea;
   width: 100%;
-  height: 50px;
+  height: auto;
   padding-bottom: 2rem;
-  margin-bottom: .5rem;
 }
 .third-content .add-chapter input {
-  width: 30%;
-  border-radius: 20px;
+  width: 50%;
+  border-radius: 10px;
   background-color: rgb(252, 179, 43);
   padding: 10px;
   box-shadow: 2px 2px 3px rgb(115, 114, 114);
+  margin-top: 1rem;
 }
 #onestory .onestory-container {
   background-color: #fff;
   border-radius: 10px;
   padding: 2rem;
-}
-.user-img {
-  width: 40px;
-  height: 40px;
 }
 #onestory .image-name {
   display: flex;
@@ -276,29 +342,33 @@ header a {
   font-size: 1rem;
   font-weight: 400;
 }
-.delete-button {
-  background-color: gray;
-}
+
 .third-content .edit-chapter {
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.third-content .edit-chapter input[value="Delete?"]  {
+  margin: 0;
+  background-color: var(--color-danger);
 }
 .third-content a {
+  all: unset;
   margin: 0;
-  color: var(--color-primary);
+  background-color: var(--color-input);
   text-align: center;
+  width: 80%;
+  padding: 1rem;
+  font-size: .8rem;
 }
-.editchapter form {
+.edit-chapter form {
   background-color: transparent;
-  text-align: left;
-  width: 10px;
+  width: 30%;
 }
-.editchapter input {
-  background-color: transparent;
-  text-align: left;
-  width: 10px;
-}
+
 .add-chapter {
   display: flex;
   justify-content: center;
@@ -318,9 +388,8 @@ form {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  max-width: 360px;
   margin: 0 auto 100px;
-  padding: 45px;
+  padding: 2rem;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border-radius: 10px;
@@ -331,10 +400,9 @@ form input {
   background: var(--color-input);
   width: 100%;
   border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  font-size: .8rem;
 }
 form button {
   font-family: "Roboto", sans-serif;

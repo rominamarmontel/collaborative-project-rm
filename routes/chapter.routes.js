@@ -5,10 +5,16 @@ const router = require('express').Router()
 router.get('/chapters/:chapterId/edit', async (req, res, next) => {
   try {
     const { chapterId } = req.params
-    const foundStory = await Story.findOne({ chapters: chapterId }).populate(
-      'chapters author'
-    )
-    res.render('editStory', { foundStory })
+    const chapterToUpdate = await Chapter.findOne({
+      chapterId,
+      author: req.session.currentUser._id,
+    }).populate('author')
+    if (!chapterToUpdate) {
+      return res.render('not-found')
+    }
+    const story = await Story.findOne({ chapters: chapterId })
+    console.log({ chapterToUpdate, story })
+    res.render('editStory', { chapterToUpdate, story })
     //res.json(foundStory)
   } catch (error) {
     console.log(error)
@@ -19,24 +25,20 @@ router.post('/chapters/:chapterId/edit', async (req, res, next) => {
   try {
     const { chapterId } = req.params
     const { content } = req.body
-
     const foundStory = await Story.findOne({ chapters: chapterId }).populate(
       'chapters'
     )
     if (!foundStory) {
-      return res.sendStatus(404)
+      return res.render('not-found')
     }
     const lastChapter = foundStory.chapters[foundStory.chapters.length - 1]
     const thisChapterIsLast = lastChapter._id.equals(chapterId)
     const userIsAuthor = lastChapter.author.equals(req.session.currentUser._id)
-
     if (!thisChapterIsLast || !userIsAuthor) {
       return res.sendStatus(403) //forbidden
     }
-
     await Chapter.findByIdAndUpdate(chapterId, { content })
-
-    res.redirect(`/stories/${req.params.storyId}`)
+    res.redirect('/stories/${foundStory.id}')
   } catch (error) {
     console.log(error)
   }
