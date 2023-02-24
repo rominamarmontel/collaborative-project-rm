@@ -27,12 +27,13 @@ router.post('/chapters/:chapterId/edit', async (req, res, next) => {
   try {
     const { chapterId } = req.params
     const { content } = req.body
-    const story = await Story.findOne({ chapters: chapterId })
-    const foundStory = story.populate('chapters')
+    const foundStory = await Story.findOne({ chapters: chapterId }).populate(
+      'chapters'
+    )
     if (!foundStory) {
       return res.render('not-found')
     }
-    const lastChapter = foundStory.chapters[story.chapters.length - 1]
+    const lastChapter = foundStory.chapters[foundStory.chapters.length - 1]
     const thisChapterIsLast = lastChapter._id.equals(chapterId)
     const userIsAuthor = lastChapter.author.equals(req.session.currentUser._id)
 
