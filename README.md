@@ -20,7 +20,7 @@ First, we had the idea of doing some sort of online diary then the teachers impr
 - Improve our skills with seeds and routes.
 - Add a field to upload his user image to display it on the app.
 - Add a delete function for the finished stories to be able to remove it.
-_ Improve the design to fit more with the theme of the app about writing.
+- Improve the design to fit more with the theme of the app about writing.
 - Improve the menu for the UX.
 - Make it responsive.
 - ...
@@ -28,7 +28,5 @@ _ Improve the design to fit more with the theme of the app about writing.
 ## [Link to Exquisite Stories app](https://exquisite-stories.onrender.com/)
 
 👫 About us
-This is the first group project in IRONHACK on the 24th february 2023!!
-If you have a question or a comment, please contact us.
-Marianne Agulhon 
-Hiromi Varnier
+This is the first group project in IRONHACK on the 24th february 2023!
+If you have a question or a comment, please contact us : Marianne Agulhon and Hiromi Varnier.
