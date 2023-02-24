@@ -1,31 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700);
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Readex+Pro:wght@700&display=swap');
-/* :root {
-  --color-primary:rgb(141,194,111);
-  --color-secondary: rgba(118,184,82,1);
-  --color-butoon-primary:#43A047;
-  --color-button-secondary: #4CAF50;
-  --color-error: rgb(246, 141, 141);
-  --color-input: #f2f2f2;
-} */
-/* :root {
-  --color-primary:rgb(254, 148, 27);
-  --color-secondary: rgb(245, 146, 40);
-  --color-butoon-primary:#e56f1a;
-  --color-button-secondary: #f08126;
-  --color-error: rgb(246, 141, 141);
-  --color-input: #f2f2f2;
-  --color-logout: rgb(169, 69, 41);
-} */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;300;400;500;600;700;800;900&display=swap');
+
 :root {
   --color-primary:rgb(27, 216, 254);
-  --color-secondary: rgb(40, 211, 245);
-  --color-butoon-primary:#1acae5;
+  --color-secondary: rgb(13, 196, 232);
+  --color-button-primary:#1acae5;
   --color-button-secondary: #26c8f0;
-  --color-error: rgb(52, 201, 242);
+  --color-error: rgb(250, 149, 61);
   --color-input: #f2f2f2;
   --color-logout: rgb(255, 255, 255);
-  --color-danger : rgb(218, 73, 73);
+  --color-danger : rgb(141, 134, 134);
 }
 
 *, *::before, *::after {
@@ -34,7 +19,7 @@
   padding: 0;  
 }
 
-/* common */
+/* common -----------------------------------*/
 body {
   background: var(--color-primary);
   background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-button-secondary) 50%);
@@ -57,7 +42,7 @@ button {
   box-shadow: 2px 2px 3px rgb(140, 140, 140);
   border: none;
 }
-#btn-add {
+#btn-add, form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -72,7 +57,7 @@ button {
   cursor: pointer;
 }
 button:hover,form button:active,form button:focus {
-  background: var(--color-butoon-primary);
+  background: var(--color-button-primary);
 }
 #btn-read {
   font-family: "Roboto", sans-serif;
@@ -92,8 +77,79 @@ button:hover,form button:active,form button:focus {
   width: 40px;
   height: 40px;
 }
+hr {
+  border: .5px solid rgb(219, 217, 217);
+}
+.hr {
+  margin: 3rem 0 ;
+  border: .5px solid rgb(185, 183, 183);
+}
+/* login-page -----------------------------------*/
+.login-page a {
+  color: var(--color-button-primary);
+}
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  margin: 0 auto 100px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+}
+form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: var(--color-input);
+  width: 100%;
+  border: 0;
+  margin: 1rem 0 1rem;
+  padding: 1rem;
+  font-size: .8rem;
+}
+form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: var(--color-button-secondary);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+form button:hover,form button:active,form button:focus {
+  background: var(--color-button-primary);
+}
+form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+form .message a {
+  color: var(--color-button-secondary);
+  text-decoration: none;
+}
+form .register-form {
+  display: none;
+}
+form p {
+  margin-top: 2rem;
+}
+#signup .error, #login .error {
+  color: rgb(250, 51, 51);
+}
 
-/* header */
+/* header -------------------------------------*/
 header {
   display: flex;
   justify-content: space-between;
@@ -105,14 +161,16 @@ header h1 {
   font-size: 4rem;
   color: rgb(252, 179, 43);
   line-height: 130%;
-  text-shadow: 2px 2px 3px #fff;
+  text-shadow: 2px 2px 3px rgb(56, 55, 55);
   text-align: center;
+  padding-top: 1rem;
 }
 .first a {
   color:rgb(255, 255, 255);
   white-space: nowrap;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: "Noto Sans";
 }
 header nav {
   display: flex;
@@ -139,7 +197,7 @@ header #logout-button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background:  rgb(252, 179, 43);
+  background: rgb(252, 179, 43);
   width: 100%;
   border: 0;
   padding: 10px 15px;
@@ -149,11 +207,27 @@ header #logout-button {
   cursor: pointer;
   border-radius: 5px;
 }
+header #logout-button:hover,
+header #logout-button:active,
+header #logout-button:focus {
+  background: rgb(120, 82, 10);
+}
 header a {
   color: #fff;
+  font-weight: 500;
+  font-family: "Noto Sans";
 }
-
-/* stories */
+header a:hover,
+header a:active,
+header a:focus {
+  color: gray;
+}
+header .second {
+  color:rgb(252, 179, 43);
+  font-weight: 500;
+  text-shadow: 1px 1px 1px rgb(173, 171, 171);
+}
+/* stories --------------------------------------*/
 .stories-container {
   display: flex;
   flex-direction: row;
@@ -165,7 +239,8 @@ header a {
   width: 30%;
 }
 
-.stories-container .content>div, .stories-container form{
+.stories-container .content>div, 
+.stories-container form {
   height: calc(100vh - 12rem);
   overflow-y: scroll;
 }
@@ -179,15 +254,17 @@ header a {
   height: calc(100vh - 26rem);;
 }
 .stories-container h2 {
-  font-family: "Roboto", sans-serif;
-  color: rgb(255, 255, 255);
+  font-weight: 500;
+  font-family: "Noto Sans";
+  color: #fff;
   text-shadow: 2px 2px 3px rgb(115, 114, 114);
   text-align: center;
   font-weight: 700;
   font-size: 2rem;
   padding-bottom: 1rem;
 }
-.stories-container  #label-title, .stories-container  #label-sujet {
+.stories-container  #label-title, 
+.stories-container  #label-sujet {
   color: gray;
 }
 .stories-container input {
@@ -202,7 +279,7 @@ header a {
   font-size: 1rem;
 }
 
-/* storyCard-content */
+/* storyCard-content -----------------------------*/
 .storyCard-content {
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -214,7 +291,16 @@ header a {
   margin: 0;
 }
 .storyCard-content h3 {
+  font-family: "Noto Sans";
+  font-weight: 600;
   padding-bottom: 1rem;
+}
+
+.storyCard-content p:first-child {
+  margin: 0;
+  color: rgb(3, 3, 3);
+  font-size: .9rem;
+  font-weight: 700;
 }
 .storyCard-content p {
   color: gray;
@@ -227,32 +313,69 @@ header a {
   margin: 0;
 }
 .storyCard-content a {
-  color: #FFFFFF;
+  color: #FFF;
   font-weight: normal;
 }
-.storyCard-content .btn-add, .storyCard-content .btn-read {
+.storyCard-content .btn-add, 
+.storyCard-content .btn-read {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: var(--color-button-secondary);
   width: 100%;
   border: 0;
   padding: 15px;
-  color: #FFFFFF;
+  color: #FFF;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
-.storyCard-content .btn-add:hover, .storyCard-content .btn-read:hover, .storyCard-content .btn-add:active, .storyCard-content .btn-read:active, .storyCard-content .btn-add:focus, .storyCard-content .btn-read:focus {
-  background: var(--color-butoon-primary);
+.storyCard-content .btn-add:hover, 
+.storyCard-content .btn-read:hover, 
+.storyCard-content .btn-add:active, 
+.storyCard-content .btn-read:active, 
+.storyCard-content .btn-add:focus, 
+.storyCard-content .btn-read:focus {
+  background: var(--color-button-primary);
 }
-/* myStories -----------------------------------*/
+.storyCard-content .first {
+  margin-bottom: 2rem;
+}
+.storyCard-content .second {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .5rem;
+}
+.storyCard-content .forth {
+  display: flex;
+  flex-direction: column;
+}
+.storyCard-content .fifth {
+  margin-top: 1.5rem;
+}
+
+/* myStories ---------------------------*/
 #mystory {
   margin: 0 auto;
   width: 50%;
 }
 
+#mystory h2 {
+  font-weight: 700;
+  font-family: "Noto Sans";
+  color: #fff;
+  text-shadow: 2px 2px 3px rgb(115, 114, 114);
+  text-align: center;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.mystory {
+  height: calc(100vh - 12rem);
+  overflow-y: scroll;
+}
 /* editStory----------------------------*/
 #editStory div {
   display: flex;
@@ -261,7 +384,7 @@ header a {
 }
 #editstory textarea {
   border: none;
-  background-color: #efeaea;
+  background-color:  var(--color-input);
   width: 100%;
   height: auto;
   padding-bottom: 2rem;
@@ -277,15 +400,19 @@ header a {
 
 /* oneStory ----------------------------*/
 #onestory h2 {
-  font-family: "Roboto", sans-serif;
-  color: rgb(255, 255, 255);
+  font-weight: 500;
+  font-family: "Noto Sans";
+  color: #fff;
   text-shadow: 2px 2px 3px rgb(115, 114, 114);
   text-align: center;
-  font-weight: 700;
   font-size: 2rem;
+  padding-bottom: 1rem;
 }
 #onestory h3 {
-  padding: 1rem 0;
+  font-family: "Noto Sans";
+  font-weight: 600;
+  padding-bottom: 1rem;
+  text-align: left;
 }
 #onestory {
   width: 50%;
@@ -301,19 +428,44 @@ header a {
 }
 #onestory textarea {
   border: none;
-  background-color: #efeaea;
+  background-color: var(--color-input);
   width: 100%;
   height: auto;
   padding-bottom: 2rem;
 }
-.third-content .add-chapter input {
-  width: 50%;
-  border-radius: 10px;
-  background-color: rgb(252, 179, 43);
-  padding: 10px;
-  box-shadow: 2px 2px 3px rgb(115, 114, 114);
-  margin-top: 1rem;
+
+#onestory .onestory-container {
+  height: calc(100vh - 12rem);
+  overflow-y: scroll;
 }
+.second-content {
+  margin: 1rem 0 2rem 0;
+}
+
+.third-content .add-chapter input {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: var(--color-button-secondary);
+  width: 80%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px rgb(140, 140, 140);
+  border: none;
+}
+
+.third-content .add-chapter input:hover,
+.third-content .add-chapter input:active,
+.third-content .add-chapter input:focus {
+  background: var(--color-button-primary);
+}
+
 #onestory .onestory-container {
   background-color: #fff;
   border-radius: 10px;
@@ -322,18 +474,26 @@ header a {
 #onestory .image-name {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-start;
   gap: .5rem;
 }
+
 .image-name div {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: flex-start;
+}
+.image-name p:first-child {
+  margin: 0;
+  color: rgb(3, 3, 3);
+  font-size: .9rem;
+  font-weight: 700;
 }
 .image-name p {
   margin: 0;
   color: gray;
-  font-size: .9rem;
+  font-size: .8rem;
 }
 .image-name h5 {
   font-family: "Roboto";
@@ -353,63 +513,100 @@ header a {
 
 .third-content .edit-chapter input[value="Delete?"]  {
   margin: 0;
+  color: #fff;
   background-color: var(--color-danger);
+  font-size: 1rem;
+  font-weight: 400;
 }
+
 .third-content a {
   all: unset;
   margin: 0;
-  background-color: var(--color-input);
+  /* background-color: var(--color-input); */
   text-align: center;
   width: 80%;
   padding: 1rem;
   font-size: .8rem;
+  border:1px solid black;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.edit-chapter {
+  margin: 3rem 0 ;
 }
 .edit-chapter form {
   background-color: transparent;
   width: 30%;
+  margin: 3rem 0;
 }
 
 .add-chapter {
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 3rem 0;
 }
 
-/* login-page -----------------------------------*/
-.login-page a {
-  color: var(--color-butoon-primary);
+/* edit story *-----------------------------*/
+#edit-story {
+  width: 50%;
+  margin: 0 auto;
 }
-.login-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-}
-form {
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  margin: 0 auto 100px;
-  padding: 2rem;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+.edit-container {
+  background-color: #fff;
   border-radius: 10px;
+  padding: 2rem;
+  height: calc(100vh - 13rem);
 }
-form input {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: var(--color-input);
-  width: 100%;
-  border: 0;
-  margin: 0 0 1rem;
-  padding: 1rem;
+#edit-story p:first-child {
+  margin: 0;
+  color: rgb(3, 3, 3);
+  font-size: .9rem;
+  font-weight: 700;
+}
+#edit-story p {
+  margin: 0;
+  color: gray;
   font-size: .8rem;
 }
-form button {
+#edit-story h2 {
+  font-weight: 500;
+  font-family: "Noto Sans";
+  color: #fff;
+  text-shadow: 2px 2px 3px rgb(115, 114, 114);
+  text-align: center;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+#edit-story h3 {
+  font-family: "Noto Sans";
+  font-weight: 600;
+  padding-bottom: 1rem;
+  text-align: left;
+}
+
+#edit-story form {
+  box-shadow: none;
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+#edit-story textarea {
+  border: none;
+  background-color: var(--color-input);
+  width: 100%;
+  height: calc(100vh - 26.5rem);
+  padding-bottom: 2rem;
+}
+
+#edit-story input {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: var(--color-button-secondary);
-  width: 100%;
+  width: 80%;
   border: 0;
   padding: 15px;
   color: #FFFFFF;
@@ -417,25 +614,48 @@ form button {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
-}
-form button:hover,form button:active,form button:focus {
-  background: var(--color-butoon-primary);
-}
-form .message {
-  margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
-}
-form .message a {
-  color: var(--color-button-secondary);
-  text-decoration: none;
-}
-form .register-form {
-  display: none;
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px rgb(140, 140, 140);
+  border: none;
 }
 
-/* error */
+.third-content .add-chapter input:hover,
+.third-content .add-chapter input:active,
+.third-content .add-chapter input:focus {
+  background: var(--color-button-primary);
+}
+#edit-story .first {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .5rem;
+  margin-bottom: .5rem;
+}
+#edit-story .third {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+/* error -----------------------------------*/
+#error-message {
+  display: flex;
+  flex-direction: column;
+  background-color: orange;
+  width: 30%;
+  box-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
 .error , .error-message  {
-  color: var(--color-error);
+  z-index: 5;
+  color: #FFF;
   font-weight: bold;
+  text-align: center;
+  padding: 2rem;
+  margin: 0;
 }

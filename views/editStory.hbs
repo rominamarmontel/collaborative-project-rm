@@ -1,7 +1,19 @@
-<form action="/chapters/{{chapterToUpdate._id}}/edit" method="post">
-  <h2>{{story.title}}</h2>
-  <img src="{{chapterToUpdate.author.picture_url}}" alt="{{chapterToUpdate.author.username}}" class="user-img">
-  <p>{{chapterToUpdate.author.username}}</p>
-  <textarea id="content" name="content" rows="20" cols="42">{{chapterToUpdate.content}}</textarea>
-  <input type="submit" value="Edit">
-</form>
+<section id="edit-story">
+  <h2>Edit the last Chapter</h2>
+  <div class="edit-container">
+    <form action="/chapters/{{chapterToUpdate._id}}/edit" method="post">
+      <h3>{{story.title}}</h3>
+      <div class="first">
+        <div class="second">
+          <img src="{{chapterToUpdate.author.picture_url}}" alt="{{chapterToUpdate.author.username}}" class="user-img">
+        </div>
+        <div class="third">
+          <p>{{chapterToUpdate.author.username}}</p>
+          <p>Last Update: {{dateFormat this.updatedAt "MM/DD/YYYY hh:m a"}}</p>
+        </div>
+      </div>
+      <textarea id="content" name="content" rows="20" cols="42">{{chapterToUpdate.content}}</textarea>
+      <input type="submit" value="Edit a chapter">
+    </form>
+  </div>
+</section>

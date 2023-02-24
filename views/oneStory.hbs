@@ -1,5 +1,5 @@
 <section id="onestory">
-  <h2>Add chapter</h2>
+  <h2>Add your chapter</h2>
   <div class="onestory-container">
     <div class="first-content">
       <h3>{{title}}</h3>
@@ -7,11 +7,12 @@
       <div class="image-name">
         <img class="user-img" src="{{this.author.picture_url}}" alt="{{this.author.username}}">
         <div>
-          <h5>{{ author.username }}</h5>
+          <p>{{ author.username }}</p>
           <p>Last Update: {{dateFormat this.updatedAt "MM/DD/YYYY hh:m a"}}</p>
         </div>
       </div>
     </div>
+    <hr>
     <div class="second-content">
       <p>{{this.content}}</p>
     </div>
@@ -19,19 +20,19 @@
     <div class="third-content">
       {{#if this._doc.editable}}
       <div class="edit-chapter">
-        <a href="/chapters/{{this._id}}/edit">Edit a chapter</a>
+        <a href="/chapters/{{this._id}}/edit">You want to edit?</a>
         <form action="/chapters/{{this._id}}/delete" method="post">
           <input type="submit" value="Delete?">
         </form>
       </div>
-      <hr>
+      <hr class="hr">
       {{/if}}
       {{/each}}
       <div class="add-chapter">
         {{#if chapterCount}}
         <form action="/stories/{{this._id}}" method="post">
-          <textarea name="content" placeholder="Add a new chapter"></textarea>
-          <input type="submit" value="Add">
+          <textarea name="content" placeholder="Add your chapter HERE..."></textarea>
+          <input type="submit" value="Add your new chapter">
         </form>
         {{/if}}
       </div>
