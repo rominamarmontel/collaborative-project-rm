@@ -27,10 +27,8 @@ router.post('/chapters/:chapterId/edit', async (req, res, next) => {
   try {
     const { chapterId } = req.params
     const { content } = req.body
-
-    const foundStory = await Story.findOne({ chapters: chapterId }).populate(
-      'chapters'
-    )
+    const story = await Story.findOne({ chapters: chapterId })
+    const foundStory = story.populate('chapters')
     if (!foundStory) {
       return res.render('not-found')
     }
