@@ -26,3 +26,8 @@ _ Improve the design to fit more with the theme of the app about writing.
 
 ## [Link to Exquisite Stories app](https://exquisite-stories.onrender.com/)
 
+👫 About us
+This is the first group project in IRONHACK on the 24th february 2023!!
+If you have a question or a comment, please contact us.
+Marianne Agulhon 
+Hiromi Varnier
