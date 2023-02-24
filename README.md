@@ -1,4 +1,5 @@
 # Exquisite Stories (Ironhack 2023 - Dev web - Project 2)
+<img width="1408" alt="Screenshot 2023-02-24 at 09 47 03" src="https://user-images.githubusercontent.com/69083631/221133837-3dc87842-161d-42fe-9293-1af24ad8b5ae.png">
 
 ## Why do we choose this app?
 
