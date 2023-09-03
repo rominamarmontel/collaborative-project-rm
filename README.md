@@ -1,6 +1,6 @@
 # Exquisite Stories (Ironhack 2023 - Dev web - Project 2)
 <img width="1408" alt="Screenshot 2023-02-24 at 09 47 03" src="https://user-images.githubusercontent.com/69083631/221135615-7a1262ab-c33b-4afd-9819-24aa7d61027c.png">
-
+https://exquisite-stories-x5xa.onrender.com/ <br />
 ## Why do we choose this app?
 
 First, we had the idea of doing some sort of online diary then the teachers improved our idea and directed us to a story app so users could write, edit, delete and share stories with other users from the community who like to write.
